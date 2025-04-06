@@ -44,36 +44,7 @@ Display all previous analyses in a table:
 
 ## 🧾 Protobuf API Definition (sentiment.proto)
 
-```proto
-syntax = "proto3";
-
-import "google/protobuf/empty.proto";
-
-message Sentiment {
-  string symbol = 1;
-  string sentiment = 2; // "Positive", "Neutral", or "Negative"
-  string analyzed_at = 3;
-}
-
-message AnalyzeRequest {
-  string symbol = 1;
-}
-
-message AnalyzeResponse {
-  Sentiment sentiment = 1;
-}
-
-message SentimentListResponse {
-  repeated Sentiment sentiments = 1;
-}
-
-service SentimentService {
-  rpc AnalyzeSymbol(AnalyzeRequest) returns (AnalyzeResponse);
-  rpc GetAllSentiments(google.protobuf.Empty) returns (SentimentListResponse);
-}
-```
-
----
+Feel free to do your own proto definations
 
 ## 🛠 Backend (Go)
 
@@ -91,21 +62,7 @@ service SentimentService {
 - Communicates with backend using **gRPC-Web**
 - Uses a **proxy (Envoy or grpcwebproxy)** to convert HTTP/1.1 calls to gRPC
 
----
 
-## 📂 Project Structure
-
-```
-.
-├── proto/
-│   └── sentiment.proto
-├── server/
-│   └── main.go
-├── client/
-│   └── (Vue app code)
-├── envoy.yaml
-└── README.md
-```
 
 
 ## 📌 Assumptions & Simplifications
