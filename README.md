@@ -1,3 +1,4 @@
+
 # 📈 Stock Sentiment Viewer
 
 A simplified AI-style stock sentiment viewer that allows users to input stock symbols and receive basic sentiment insights (mocked data), while maintaining a history of all previously analyzed symbols.
@@ -70,3 +71,66 @@ service SentimentService {
   rpc AnalyzeSymbol(AnalyzeRequest) returns (AnalyzeResponse);
   rpc GetAllSentiments(google.protobuf.Empty) returns (SentimentListResponse);
 }
+```
+
+---
+
+## 🛠 Backend (Go)
+
+- Implements the `SentimentService`
+- Uses an in-memory slice to store `Sentiment` structs
+- Randomly generates sentiment values (`Positive`, `Neutral`, `Negative`)
+- Listens on `localhost:50051` for gRPC traffic
+
+---
+
+## 🖥 Frontend (Vue.js)
+
+- Input form for entering stock symbols
+- Table to display sentiment history
+- Communicates with backend using **gRPC-Web**
+- Uses a **proxy (Envoy or grpcwebproxy)** to convert HTTP/1.1 calls to gRPC
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── proto/
+│   └── sentiment.proto
+├── server/
+│   └── main.go
+├── client/
+│   └── (Vue app code)
+├── envoy.yaml
+└── README.md
+```
+
+
+## 📌 Assumptions & Simplifications
+
+- Sentiment values are randomly generated (no real ML model involved)
+- Sentiments are stored in-memory (not persisted)
+- gRPC-Web proxy is required to support browser-based clients
+
+---
+
+## ✅ Evaluation Criteria
+
+- ✅ Correctness of Protobuf definitions
+- ✅ Functional gRPC server implementation in Go
+- ✅ Successful gRPC-Web setup and integration
+- ✅ Clean and modular project structure
+- ✅ Code readability, documentation, and comments
+
+---
+
+## 🧠 Notes
+
+You do **not** need to build a real ML model — mocked/random data is acceptable. Focus on getting gRPC, Vue, and integration working smoothly.
+
+---
+
+## 👨🏽‍💻 Maintainer
+
